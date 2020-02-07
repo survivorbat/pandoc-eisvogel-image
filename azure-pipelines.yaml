@@ -11,7 +11,8 @@ variables:
   vmImage: "ubuntu-16.04"
   tag: $(Build.BuildId)
   repository: "survivorbat/pandoc"
-  alpine_version: "0.14.3"
+  alpine_version: "3.11.3"
+  pandoc_version: "2.9.1.1"
   uid: "1000"
   gid: "1000"
 
@@ -29,7 +30,7 @@ stages:
             inputs:
               command: build
               repository: $(repository)
-              arguments: --build-arg alpine_version=$(alpine_version) --build-arg uid=$(uid) --build-arg gid=$(gid)
+              arguments: --build-arg alpine_version=$(alpine_version) --build-arg pandoc_version=$(pandoc_version) --build-arg uid=$(uid) --build-arg gid=$(gid)
               tags: |
                 $(tag)
                 latest
