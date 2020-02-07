@@ -1,0 +1,45 @@
+trigger:
+  paths:
+    include:
+      - Dockerfile
+      - azure-pipelines.yaml
+  branches:
+    include:
+      - master
+
+variables:
+  vmImage: "ubuntu-16.04"
+  tag: $(Build.BuildId)
+  repository: "survivorbat/pandoc"
+  alpine_version: "0.14.3"
+  uid: "1000"
+  gid: "1000"
+
+stages:
+  - stage: BuildAndPublish
+    displayName: Build and publish Image
+    jobs:
+      - job: BuildAndPublish
+        displayName: Build and Publish image
+        pool:
+          vmImage: $(vmImage)
+        steps:
+          - task: Docker@2
+            displayName: Build
+            inputs:
+              command: build
+              repository: $(repository)
+              arguments: --build-arg alpine_version=$(alpine_version) --build-arg uid=$(uid) --build-arg gid=$(gid)
+              tags: |
+                $(tag)
+                latest
+          - task: Docker@2
+            displayName: Publish
+            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+            inputs:
+              containerRegistry: 'DockerHub'
+              command: push
+              repository: $(repository)
+              tags: |
+                $(tag)
+                latest
