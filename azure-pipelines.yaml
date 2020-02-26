@@ -9,7 +9,7 @@ trigger:
 
 variables:
   vmImage: "ubuntu-16.04"
-  repository: "survivorbat/pandoc_eisvogel"
+  repository: "survivorbat/pandoc-eisvogel"
   alpine_version: "3.11.3"
   pandoc_version: "2.9.1.1"
   eisvogel_version: "1.4.0"
