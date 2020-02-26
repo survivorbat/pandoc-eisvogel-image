@@ -5,7 +5,7 @@ mkdir -p /data/out
 content=""
 for file in $(ls /data | grep .md)
 do
-	content="${content}$(cat ${file})\pagebreak"
+	content="${content}$(cat ${file})\pagebreak\n"
 done
 
 echo "$content" > /data/bundle.tmp.md
