@@ -15,7 +15,7 @@ variables:
   eisvogel_version: "1.4.0"
   tag: "e$(eisvogel_version)-p$(pandoc_version)"
   uid: "1000"
-  gid: "1000"policies
+  gid: "1000"
 
 stages:
   - stage: BuildAndPublish
