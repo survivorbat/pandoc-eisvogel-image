@@ -1,0 +1,22 @@
+#!/bin/sh
+
+mkdir -p /data/out
+
+content=""
+for file in $(ls /data | grep .md)
+do
+	content="${content}$(cat ${file})\pagebreak"
+done
+
+echo "$content" > /data/bundle.tmp.md
+
+pandoc \
+	-s \
+	--number-sections \
+	--template /templates/eisvogel.tex \
+	-o /data/out/result.pdf \
+	/data/bundle.tmp.md
+
+rm -f /data/bundle.tmp.md
+
+exec "$@"
