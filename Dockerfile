@@ -43,3 +43,5 @@ RUN chown -R pandoc:pandoc /entrypoint /templates
 USER pandoc
 
 ENTRYPOINT [ "/entrypoint" ]
+
+CMD [ "-o /data/out/result.pdf --number-sections" ]
