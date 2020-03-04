@@ -10,12 +10,10 @@ WORKDIR /data
 
 RUN wget https://github.com/jgm/pandoc/releases/download/${pandoc_version}/pandoc-${pandoc_version}-linux-amd64.tar.gz -O pandoc.tar.gz \
  && tar -xvzf pandoc.tar.gz --strip-components 1 -C /usr/local \
-
  # Users
  && addgroup -g ${gid} pandoc \
  && adduser -u ${uid} -s /bin/sh -S pandoc \
  && chown -R pandoc:pandoc /data \
-
  # TexLive
  && apk add --no-cache \
     texlive \
