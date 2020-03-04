@@ -2,12 +2,18 @@
 
 echo "Output path: /data/${OUTPUT_PATH}"
 
-content=""
+touch /tmp/pandoc/bundle.tmp.md
+
 for file in $(ls /data | grep .md)
 do
-	content="${content}$(cat ${file}) \pagebreak "
+	echo "Appending ${file} to result document"
+	echo "$(cat ${file})" >> /tmp/pandoc/bundle.tmp.md
+	echo -e "\n\\pagebreak\n" >> /tmp/pandoc/bundle.tmp.md
 done
 
-echo "$content" > /tmp/pandoc/bundle.tmp.md
+if [ "${DEBUG}" != "false" ]; then
+	cat /tmp/pandoc/bundle.tmp.md
+fi
 
+echo "Writing result to ${OUTPUT_PATH}"
 pandoc -s --template /templates/eisvogel.tex -o /data/${OUTPUT_PATH} $@ /tmp/pandoc/bundle.tmp.md

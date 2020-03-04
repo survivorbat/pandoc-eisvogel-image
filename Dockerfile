@@ -41,6 +41,7 @@ COPY ./entrypoint /entrypoint
 RUN chown -R pandoc:pandoc /entrypoint /templates
 
 ENV OUTPUT_PATH='result.pdf'
+ENV DEBUG=false
 
 USER pandoc
 
