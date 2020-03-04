@@ -40,8 +40,10 @@ COPY ./entrypoint /entrypoint
 
 RUN chown -R pandoc:pandoc /entrypoint /templates
 
+ENV OUTPUT_PATH='result.pdf'
+
 USER pandoc
 
 ENTRYPOINT [ "/entrypoint" ]
 
-CMD [ "-o /data/out/result.pdf --number-sections" ]
+CMD [ "--number-sections" ]
