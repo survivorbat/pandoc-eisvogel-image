@@ -32,7 +32,9 @@ RUN mkdir -p /templates/eisvogel \
  && wget https://github.com/Wandmalfarbe/pandoc-latex-template/releases/download/v${eisvogel_version}/Eisvogel-${eisvogel_version}.tar.gz -O /templates/eisvogel/eisvogel.tar.gz \
  && tar -xvzC /templates/eisvogel -f /templates/eisvogel/eisvogel.tar.gz \
  && mv /templates/eisvogel/eisvogel.tex /templates/eisvogel.tex \
- && rm -rf /templates/eisvogel
+ && rm -rf /templates/eisvogel \
+ && mkdir -p /tmp/pandoc \
+ && chown -R pandoc:pandoc /tmp/pandoc
 
 COPY ./entrypoint /entrypoint
 

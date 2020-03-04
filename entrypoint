@@ -8,6 +8,6 @@ do
 	content="${content}$(cat ${file}) \pagebreak "
 done
 
-echo "$content" > /bundle.tmp.md
+echo "$content" > /tmp/pandoc/bundle.tmp.md
 
-pandoc -s --template /templates/eisvogel.tex -o /data/${OUTPUT_PATH} $@ /bundle.tmp.md
+pandoc -s --template /templates/eisvogel.tex -o /data/${OUTPUT_PATH} $@ /tmp/pandoc/bundle.tmp.md
