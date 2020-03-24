@@ -8,7 +8,7 @@ trigger:
       - master
 
 variables:
-  vmImage: "ubuntu-16.04"
+  vmImage: "ubuntu-latest"
   repository: "survivorbat/pandoc-eisvogel"
   uid: "1000"
   gid: "1000"
@@ -22,13 +22,13 @@ stages:
         strategy:
           matrix:
             e1.4.0p2.9.2.1a3.11.5:
-              pandoc_version: 2.9.2.1
-              alpine_version: 3.11.5
-              eisvogel_version: 1.4.0
+              pandoc_version: "2.9.2.1"
+              alpine_version: "3.11.5"
+              eisvogel_version: "1.4.0"
             e1.4.0p2.9.1.1a3.11.3:
-              pandoc_version: 2.9.1.1
-              alpine_version: 3.11.3
-              eisvogel_version: 1.4.0
+              pandoc_version: "2.9.1.1"
+              alpine_version: "3.11.3"
+              eisvogel_version: "1.4.0"
         pool:
           vmImage: $(vmImage)
         steps:
@@ -37,7 +37,7 @@ stages:
             inputs:
               command: build
               repository: $(repository)
-              arguments: --build-arg alpine_version=$(alpine_version) --build-arg eisvogel_version=$(eisvogel_version) --build-arg pandoc_version=$(pandoc_version) --build-arg uid=$(uid) --build-arg gid=$(gid)
+              arguments: --build-arg alpine_version="$(alpine_version)" --build-arg eisvogel_version="$(eisvogel_version)" --build-arg pandoc_version="$(pandoc_version)" --build-arg uid="$(uid)" --build-arg gid="$(gid)"
               tags: |
                 "e$(eisvogel_version)-p$(pandoc_version)"
           - task: Docker@2
