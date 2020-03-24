@@ -18,7 +18,7 @@ stages:
     displayName: Build and publish Image
     jobs:
       - job: BuildAndPublish
-        displayName: Build and Publish image $(repository)
+        displayName: Build and Publish image
         strategy:
           matrix:
             e1.4.0p2.9.2.1a3.11.5:
@@ -33,7 +33,7 @@ stages:
           vmImage: $(vmImage)
         steps:
           - task: Docker@2
-            displayName: Build
+            displayName: Build $(repository)
             inputs:
               command: build
               repository: $(repository)
@@ -41,7 +41,7 @@ stages:
               tags: |
                 e$(eisvogel_version)-p$(pandoc_version)
           - task: Docker@2
-            displayName: Publish
+            displayName: Publish $(repository)
             condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
             inputs:
               containerRegistry: 'DockerHub'
