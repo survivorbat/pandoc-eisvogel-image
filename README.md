@@ -1,5 +1,7 @@
 # Pandoc Eisvogel image
 
+![Docker Pulls](https://img.shields.io/docker/pulls/survivorbat/pandoc-eisvogel)
+
 A docker image containing Pandoc and the EisVogel template to generate pdf files from markdown.
 
 ## Getting started
