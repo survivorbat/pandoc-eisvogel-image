@@ -11,7 +11,8 @@ Using this image is as easy as:
 1. Run `docker pull survivorbat/pandoc-eisvogel:latest`
 1. Run `docker run --rm -e OUTPUT_PATH='my_compiled_document.pdf' -v <directory-you-want-to-compile>:/data survivorbat/pandoc-eisvogel:latest`
 
-A few moments later the compiled pdf called my_compiled_document.pdf will appear in a new directory called `out`.
+A few moments later the compiled pdf called my_compiled_document.pdf will appear in the directory.
+This document will include ALL markdown files it can find.
 
 ## Options
 
@@ -22,4 +23,4 @@ You can define the following options using environment variables:
 
 ## Known quirks
 
-- Embedding images is not as easy as it should be
+- Embedding images is not as easy as it should be, since you can't reference images outside of the working directory

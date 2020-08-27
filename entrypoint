@@ -4,7 +4,7 @@ echo "Output path: /data/${OUTPUT_PATH}"
 
 touch /tmp/pandoc/bundle.tmp.md
 
-for file in /data/*.md
+for file in /data/**/*.md
 do
 	echo "Appending ${file} to result document"
 	echo "$(cat ${file})" >> /tmp/pandoc/bundle.tmp.md
