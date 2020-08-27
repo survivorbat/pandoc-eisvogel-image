@@ -1,8 +1,9 @@
 trigger:
   paths:
-    include:
-      - Dockerfile
-      - azure-pipelines.yaml
+    exclude:
+      - README.md
+      - Makefile
+      - .gitignore
   branches:
     include:
       - master
